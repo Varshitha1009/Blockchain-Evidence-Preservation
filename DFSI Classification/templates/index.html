@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DFIS System</title>
+</head>
+
+<body style="text-align:center; background:#dfeee0; font-family:Arial;">
+
+<h1>Digital Forensic Image System</h1>
+<h3>Welcome, {{user}}</h3>
+
+<!-- FORM -->
+<form action="/home" method="POST" enctype="multipart/form-data">
+
+    <!-- FILE INPUT -->
+    <input type="file" name="my_image" id="fileInput"><br><br>
+
+    <!-- SHOW SELECTED FILE -->
+    <p id="fileName" style="color:blue;"></p>
+
+    <!-- SUBMIT BUTTON -->
+    <button type="submit">Submit</button>
+
+</form>
+
+<script>
+document.getElementById("fileInput").addEventListener("change", function(){
+    if(this.files.length > 0){
+        document.getElementById("fileName").innerText = "Selected: " + this.files[0].name;
+    } else {
+        document.getElementById("fileName").innerText = "";
+    }
+});
+</script>
+
+<br><br>
+
+<!-- RESULT -->
+{% if img_path %}
+<div style="background:white; padding:20px; width:500px; margin:auto; border-radius:10px;">
+
+    <h2>Uploaded Image</h2>
+
+    {% if tamper_status == "TAMPERED" %}
+        <h3>Original Image</h3>
+        <img src="{{ original_img }}" width="200"><br><br>
+
+        <h3>Modified Image</h3>
+        <img src="{{ img_path }}" width="200"><br><br>
+    {% else %}
+        <img src="{{ img_path }}" width="300"><br><br>
+    {% endif %}
+
+    <h3>Uploaded By: {{ user }}</h3>
+    <h3>Time: {{ current_time }}</h3>
+    <h3>Image Type: {{ prediction }}</h3>
+
+    <h3 style="color:red;">Status: {{ tamper_status }}</h3>
+
+    {% if tamper_status != "ORIGINAL" %}
+        <p>Original Uploaded By: {{ old_user }}</p>
+        <p>Original Time: {{ old_time }}</p>
+    {% endif %}
+
+</div>
+{% endif %}
+
+<br><br>
+<a href="/logout">Logout</a>
+
+</body>
+</html>

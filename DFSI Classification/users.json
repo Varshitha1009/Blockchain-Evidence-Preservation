@@ -1,0 +1,26 @@
+{
+    "varsha": {
+        "email": "varshithagauravrama10@gmail.com",
+        "password": "1234"
+    },
+    "asmitha": {
+        "email": "abcdef@gmail.com",
+        "password": "12345"
+    },
+    "deepika": {
+        "email": "ab@gmail.com",
+        "password": "12345"
+    },
+    "admin": {
+        "email": "admin@gmail.com",
+        "password": "1234"
+    },
+    "police": {
+        "email": "police@gmail.com",
+        "password": "1234"
+    },
+    "investigator": {
+        "email": "inves@gmail.cpm",
+        "password": "1234"
+    }
+}
